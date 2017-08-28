@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="noServer">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="/dist/styles.css">
+</head>
+
+<body ng-controller="changeMeController">
+    <!--<tests></tests>-->
+    <div class='headerInfo'>
+        <div class="index-nav-wrapper">
+            <p>
+                <a ui-sref="home" ng-click='enabeGetRecipe(false)'>
+                    <div class="index-header-text">FINAL FANTASY XIV</div>
+                    <div class="index-header-text">SHOPPING LIST</div>
+                </a>
+            </p>
+            <button ng-click='getOList(theRecipe)'>log recipe</button>
+        </div>
+
+
+        <div class="index-form-wrapper">
+            <form>
+                <div class='input-wrapper'>
+                    <div class='rowFlex'>
+                        <div class='recipeDiv'>
+                            <p>Recipes</p>
+                            <input list="selectRecipe" class='recipe-input' name="selectRecipe" placeholder="Enter or choose a recipe" ng-model="selectedRecipe"
+                                ng-click='enabeGetRecipe(true); selectedRecipe = ""'>
+                            <datalist id="selectRecipe">
+                                <option ng-repeat="recipe in recipeCard" class="droplist">{{recipe.id}} {{recipe.name}}</option>
+                            </datalist>
+                        </div>
+                        <div class='qtydiv'>
+                            <p>Qty</p>
+                            <input type="number" placeholder="qty" id="selectRecipe" class='qty-to-make-input' ng-model="qtyToMake">
+                        </div>
+                    </div>
+                </div>
+                <div class='button-wrapper'>
+                    <input type="submit" value="Get Recipe" class='getRecipeButton' ui-sref="recipe" ng-disabled="getRecipeButton != true" ng-model='getRecipeButton'
+                        ng-click="id(selectedRecipe)">
+                        <!-- ng-click="id(selectedRecipe); startInterval(); startIntervalMakeJson()"> -->
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+
+        <ui-view></ui-view>
+    </div>
+    </div>
+    </div>
+
+    <div class="index-footer-wrapper">
+        <div class="footer-object-wrapper">
+            <div class="footer-object-wiki"><a href="https://ffxiv.gamerescape.com/wiki/Main_Page" target="_blank" alt=''>Wiki</a></div>
+            <div class="footer-object-clock"><a href="http://www.ffxivclock.com/#/" target="_blank" alt=''>Clock</a></div>
+            <div class="footer-object-crafthelper"><a href="http://ffxiv-beta.lokyst.net/" target="_blank" alt=''>Craft Helper</a></div>
+        </div>
+    </div>
+    </div>
+
+
+    <!--SCRIPTS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.4/angular-sanitize.js'></script>
+    <script src="dist/js/bundle.js"></script>
+</body>
+
+</html>
