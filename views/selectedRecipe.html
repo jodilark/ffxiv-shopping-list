@@ -19,25 +19,24 @@
     <div class='recipe-materials-list-wrapper'>
         <div class="recipe-materials-title">Materials</div>
         <div class="recipe-materials-details-wrapper" ng-repeat='item in recipe.ingredients'>
-            <div class="recipe-materials-qty">{{iQty = item.qty * qtyToMake}}</div>
+            <div class="recipe-materials-qty">{{item.qty * qtyToMake}}</div>
             <div class="recipe-materials-icon"><img src="{{item.icon}}" class="mat-image"></div>
             <div class="recipe-materials-name">{{item.name}}</div>
             <div class='stackMe'>
                 <div ng-if="item.ingredients" class="sub-recipe-materials-details-wrapper" ng-repeat='sub in item.ingredients'>
-                    <div class="sub-recipe-materials-qty">{{sub.qty * qtyToMake}}</div>
+                    <div class="sub-recipe-materials-qty" >{{sub.qty * qtyToMake}}</div>
                     <div class="sub-recipe-materials-icon"><img src="{{sub.icon}}" class="sub-mat-image"></div>
                     <div class="sub-recipe-materials-name">{{sub.name}}</div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <div ng-init='combineMats(rawMat)'></div> -->
-    <div class='recipe-shopping-list-wrapper'>
-        <div class="recipe-shopping-list-title">Raw Materials Shopping List</div>
-        <div class="recipe-materials-details-wrapper" strike-out ng-repeat='grocery in recipe.rawList'>
-            <div class="recipe-materials-qty">{{grocery.qty * qtyToMake}}</div>
-            <div class="recipe-materials-icon"><img src="{{grocery.icon}}" class="mat-image"></div>
-            <div class="recipe-materials-name">{{grocery.name}}</div>
+        <div class='recipe-shopping-list-wrapper'>
+            <div class="recipe-shopping-list-title">Raw Materials Shopping List</div>
+            <div class="recipe-materials-details-wrapper" strike-out ng-repeat='grocery in recipe.rawList'>
+                <div class="recipe-materials-qty">{{grocery.qty * qtyToMake}}</div>
+                <div class="recipe-materials-icon"><img src="{{grocery.icon}}" class="mat-image"></div>
+                <div class="recipe-materials-name">{{grocery.name}}</div>
+            </div>
         </div>
     </div>
 </div>

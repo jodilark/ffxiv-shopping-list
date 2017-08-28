@@ -373,6 +373,10 @@ div {
 
 //shoppingList
 .recipe-shopping-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 150px;
     border: 2px inset #333;
     height: 1000px;
     margin: 10px 0px 50px;

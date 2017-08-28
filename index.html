@@ -20,9 +20,7 @@
                     <div class="index-header-text">SHOPPING LIST</div>
                 </a>
             </p>
-            <!-- <button ng-click='getOList(theRecipe)'>log recipe</button> -->
         </div>
-
 
         <div class="index-form-wrapper">
             <form>
@@ -45,15 +43,12 @@
                 <div class='button-wrapper'>
                     <input type="submit" value="Get Recipe" class='getRecipeButton' ui-sref="recipe" ng-disabled="getRecipeButton != true" ng-model='getRecipeButton'
                         ng-click="id(selectedRecipe)">
-                        <!-- ng-click="id(selectedRecipe); startInterval(); startIntervalMakeJson()"> -->
                 </div>
             </form>
         </div>
     </div>
 
-    
-
-        <ui-view></ui-view>
+    <ui-view></ui-view>
     </div>
     </div>
     </div>
