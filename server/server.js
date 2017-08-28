@@ -9,4 +9,4 @@ app.use(bodyParser.json())
 // app.use(session({resave: true, saveUninitialized: true, secret: 'supercalifragilisticexpialidocious'}));
 
 //db and node echo
-app.listen(process.env.PORT || port), _ => console.log(`listening on port ${port}`))
+app.listen(process.env.PORT || port), _ => console.log(`listening on port ${port}`)
