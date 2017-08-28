@@ -1,7 +1,6 @@
 {
   "name": "ffxiv-shopping-list",
   "version": "1.0.0",
-  "description": "",
   "engines": {
     "node": "5.3.0"
   },
@@ -20,6 +19,7 @@
     "del": "^2.2.2",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "foobar": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-cachebust": "0.0.6",
@@ -28,5 +28,15 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-uglify": "^3.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jodilark/ffxiv-shopping-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jodilark/ffxiv-shopping-list/issues"
+  },
+  "homepage": "https://github.com/jodilark/ffxiv-shopping-list#readme",
+  "description": ""
 }
