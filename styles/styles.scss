@@ -302,7 +302,7 @@ div {
 }
 
 .recipe-materials-name {
-    width: 100%;
+    flex:1;
     line-height: 35px;
     margin-left: 15px;
     padding-left: 10px;
@@ -321,6 +321,17 @@ div {
     align-items: center;
     padding: 10px;
     background: $transparent;
+    // border: 1px dashed blue;
+}
+
+.stackMe {
+    // height: 100%;
+    // width: 100%;
+    flex:1;
+    // border: 1px dashed red;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .sub-recipe-materials-qty {
@@ -387,6 +398,7 @@ div {
     justify-content: flex-start;
     align-items: center;
     background: $transparent;
+    padding: 10px;
 }
 
 .recipe-list-item-qty {

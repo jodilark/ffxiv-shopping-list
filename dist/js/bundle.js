@@ -12,8 +12,6 @@ angular.module('noServer', ['ui.router', 'ui.select', 'ngSanitize']).config(func
 });
 'use strict';
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 angular.module('noServer').controller('changeMeController', function ($scope, changeMeService, $stateParams, recipeListService, singleRecipeService, $interval) {
     // hookup tests
     $scope.controllerTest = "changeMe controller is working";
@@ -25,6 +23,7 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
     var trl = [];
     var allTheRaw = [];
     var lastOfAll = [];
+    $scope.recipe = trl[0];
     $scope.theID;
     $scope.selectedRecipe; //two way binding
     $scope.qtyToMake = 1; //two way binding
@@ -46,82 +45,95 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
     $scope.listOfRecipes();
 
     // Get a single recipe by ID
-    $scope.theRecipe = function (id) {
-        singleRecipeService.getRecipe(id).then(function (response) {
-            $scope.thisRecipe = response.data;
-            $scope.tree = response.data.tree;
-            console.log($scope.thisRecipe);
-        });
-    };
+    // $scope.theRecipe = function (id) {
+    //     singleRecipeService.getRecipe(id).then(function (response) {
+    //         $scope.thisRecipe = response.data
+    //         $scope.tree = response.data.tree
+    //         console.log($scope.thisRecipe)
+    //     })
+    // }
 
     //   item.synths['1'].tree  
 
     // show directive span if recipe has a url_type = 'recipe'
-    $scope.isRecipe = function (urltype, obj) {
-        // console.log(`the obj is ${obj}`)
-        for (var key in obj) {
-            // console.log(`the key in the obj is ${key}`)
-            $scope.synthID = obj[key];
-            // console.log(`the new obj should be ${$scope.synthID} but is actually ${obj[key]}`)
-            break;
-        }
-        return urltype > 0;
-    };
+    // $scope.isRecipe = function (urltype, obj) {
+    //     // console.log(`the obj is ${obj}`)
+    //     for(let key in obj){
+    //         // console.log(`the key in the obj is ${key}`)
+    //         $scope.synthID = obj[key]
+    //         // console.log(`the new obj should be ${$scope.synthID} but is actually ${obj[key]}`)
+    //         break;
+    //     }        
+    //     return urltype > 0
+    // }
 
     //add tier1 objects to raw material array
-    var rawArr = [];
-    $scope.rawMat = rawArr;
-    $scope.raw = function (name, qty, sName, sQty, recipeBool) {
-        if (recipeBool) {
-            rawArr.push(_defineProperty({}, sName, sQty));
-        } else {
-            rawArr.push(_defineProperty({}, name, qty));
-        }
+    // var rawArr = []
+    // $scope.rawMat = rawArr
+    // $scope.raw = function (name, qty, sName, sQty, recipeBool) {
+    //     if (recipeBool) {
+    //         rawArr.push(
+    //             {
+    //                 [sName]: sQty
+    //             }
+    //         )
+    //     }
+    //     else {
+    //         rawArr.push(
+    //             {
+    //                 [name]: qty
+    //             }
+    //         )
+    //     }
 
-        return rawArr; //of raw objects and their quantities
-    };
+    //     return rawArr //of raw objects and their quantities
+    // }
 
     // combine duplicate mats
-    var shoppingListArr = [];
-    $scope.testy = shoppingListArr;
-    $scope.startInterval = function () {
-        $interval(function () {
-            $scope.combineMats = function (rawArr) {
-                var a = rawArr;
-                var ans = {};
-                for (var i = 0; i < a.length; ++i) {
-                    for (var obj in a[i]) {
-                        ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
-                    }
-                }
-                shoppingListArr.push(ans);
-            };
-            // console.log(rawArr)
-            $scope.combineMats(rawArr);
-        }, 500, 1);
-    };
+    // var shoppingListArr = []
+    // $scope.testy = shoppingListArr
+    // $scope.startInterval = function(){
+    //     $interval(function(){
+    //         $scope.combineMats = function (rawArr) {
+    //             let a = rawArr;
+    //             let ans = {};
+    //             for (let i = 0; i < a.length; ++i) {
+    //                 for (let obj in a[i]) {
+    //                     ans[obj] = ans[obj] ? ans[obj] + a[i][obj] : a[i][obj];
+    //                 }
+    //             }
+    //             shoppingListArr.push(ans)
+    //         }
+    //         // console.log(rawArr)
+    //         $scope.combineMats(rawArr)
+    //     }, 500,1)  
+    // }
 
     //make the shoppinListArr into a Json blob
-    var jsonObject = [];
-    $scope.shoppingJson = jsonObject;
-    $scope.startIntervalMakeJson = function () {
-        $interval(function () {
-            $scope.makeJson = function (arr, newKeyName, newValueQty) {
-                var obj = arr[0];
-                // console.log(obj)
-                for (var key in obj) {
-                    var _jsonObject$push;
+    // var jsonObject = []
+    // $scope.shoppingJson = jsonObject
+    // $scope.startIntervalMakeJson = function(){
+    //     $interval(function(){
+    //         $scope.makeJson = function (arr, newKeyName, newValueQty) {
+    //             let obj = arr[0]
+    //             // console.log(obj)
+    //             for (let key in obj) {
+    //                 // console.log(key)
+    //                 // console.log(obj[key])
+    //                 jsonObject.push(
+    //                     {
+    //                         [newKeyName]: key
+    //                         , [newValueQty]: obj[key]
+    //                     }
+    //                 )
+    //             }
+    //             // console.log(jsonObject)
+    //         }
+    //         // console.log(jsonObject)
+    //         $scope.makeJson(shoppingListArr, "name", "qty")
+    //     }, 1000,1)
+    // }
 
-                    // console.log(key)
-                    // console.log(obj[key])
-                    jsonObject.push((_jsonObject$push = {}, _defineProperty(_jsonObject$push, newKeyName, key), _defineProperty(_jsonObject$push, newValueQty, obj[key]), _jsonObject$push));
-                }
-                // console.log(jsonObject)
-            };
-            // console.log(jsonObject)
-            $scope.makeJson(shoppingListArr, "name", "qty");
-        }, 1000, 1);
-    };
 
     //Enable get recipe button
     $scope.enabeGetRecipe = function (bool) {
@@ -204,47 +216,8 @@ angular.module('noServer').controller('changeMeController', function ($scope, ch
         // console.log(`this  is: ${JSON.stringify(allTheRaw)}`)
         // console.log(lastOfAll)
         trl[0].rawList = lastOfAll;
-        console.log(trl[0]);
-    };
-});
-"use strict";
-
-angular.module("noServer").directive("tests", function (changeMeService, recipeListService, singleRecipeService) {
-    return {
-        templateUrl: "../../views/connectionTest.html"
-    };
-});
-'use strict';
-
-angular.module("noServer").directive('nestedNestedRecipe', function (recipeListService, singleRecipeService) {
-    return {
-        templateUrl: '../../views/nestedNestedRecipe.html'
-    };
-});
-'use strict';
-
-angular.module("noServer").directive('nestedRecipe', function (recipeListService, singleRecipeService) {
-    return {
-        templateUrl: '../../views/nestedRecipe.html'
-    };
-});
-'use strict';
-
-angular.module("noServer").directive('shoppingList', function (recipeListService, singleRecipeService) {
-    return {
-        templateUrl: '../../views/shoppingList.html'
-    };
-});
-"use strict";
-
-angular.module("noServer").directive("strikeOut", function () {
-    return {
-        link: function link(scope, element, attribure) {
-            element.on("click", function () {
-                element.css('text-decoration', 'line-through');
-                element.css('text-decoration-color', 'white');
-            });
-        }
+        $scope.recipe = trl[0];
+        console.log($scope.recipe);
     };
 });
 'use strict';
@@ -300,6 +273,46 @@ angular.module('noServer').service('singleRecipeService', function ($http) {
         return $http.get('https://api.xivdb.com/recipe/' + id).then(function (response) {
             return response;
         });
+    };
+});
+"use strict";
+
+angular.module("noServer").directive("tests", function (changeMeService, recipeListService, singleRecipeService) {
+    return {
+        templateUrl: "../../views/connectionTest.html"
+    };
+});
+'use strict';
+
+angular.module("noServer").directive('nestedNestedRecipe', function (recipeListService, singleRecipeService) {
+    return {
+        templateUrl: '../../views/nestedNestedRecipe.html'
+    };
+});
+'use strict';
+
+angular.module("noServer").directive('nestedRecipe', function (recipeListService, singleRecipeService) {
+    return {
+        templateUrl: '../../views/nestedRecipe.html'
+    };
+});
+'use strict';
+
+angular.module("noServer").directive('shoppingList', function (recipeListService, singleRecipeService) {
+    return {
+        templateUrl: '../../views/shoppingList.html'
+    };
+});
+"use strict";
+
+angular.module("noServer").directive("strikeOut", function () {
+    return {
+        link: function link(scope, element, attribure) {
+            element.on("click", function () {
+                element.css('text-decoration', 'line-through');
+                element.css('text-decoration-color', 'white');
+            });
+        }
     };
 });
 //# sourceMappingURL=bundle.js.map
